@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLAS Creator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #050507;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 105px;
+      border-right: 1px solid #29292f;
+      padding: 35px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .logo {
+      font-size: 46px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .nav {
+      font-size: 28px;
+      text-decoration: none;
+      color: white;
+      padding: 12px;
+      border-radius: 18px;
+    }
+
+    .nav:hover {
+      background: #1c1c22;
+    }
+
+    .main {
+      margin-left: 105px;
+      width: calc(100% - 105px);
+    }
+
+    .topbar {
+      height: 95px;
+      border-bottom: 1px solid #29292f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 45px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .creator {
+      border: 1px solid #35353d;
+      border-radius: 35px;
+      padding: 14px 25px;
+      font-size: 18px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 70px auto;
+      padding: 0 30px;
+    }
+
+    .welcome {
+      font-size: 64px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      color: #9a9aa2;
+      font-size: 24px;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+
+    .new-project {
+      background: white;
+      color: #080808;
+      border: none;
+      padding: 20px 35px;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .new-project:hover {
+      opacity: 0.85;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 55px;
+    }
+
+    .card {
+      background: #111115;
+      border: 1px solid #29292f;
+      border-radius: 28px;
+      padding: 30px;
+      min-height: 190px;
+    }
+
+    .card h2 {
+      font-size: 25px;
+      margin-bottom: 30px;
+    }
+
+    .number {
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    .label {
+      color: #96969e;
+      font-size: 20px;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 700px) {
+      .sidebar {
+        width: 70px;
+        padding: 25px 10px;
+      }
+
+      .main {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+      }
+
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .title {
+        font-size: 21px;
+      }
+
+      .creator {
+        font-size: 14px;
+        padding: 10px 15px;
+      }
+
+      .content {
+        margin: 45px auto;
+        padding: 0 25px;
+      }
+
+      .welcome {
+        font-size: 48px;
+      }
+
+      .subtitle {
+        font-size: 19px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="logo">O</div>
+
+      <a class="nav" href="#">🏠</a>
+      <a class="nav" href="#">🖼️</a>
+      <a class="nav" href="#">🎙️</a>
+      <a class="nav" href="#">📁</a>
+      <a class="nav" href="#">💳</a>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div class="title">Dashboard</div>
+        <div class="creator">OLAS Creator</div>
+      </header>
+
+      <section class="content">
+
+        <h1 class="welcome">Good to see<br>you.</h1>
+
+        <p class="subtitle">
+          Your creative workspace is<br>
+          ready.
+        </p>
+
+        <button class="new-project" onclick="newProject()">
+          ＋ New project
+        </button>
+
+        <div class="cards">
+
+          <div class="card">
+            <h2>Projects</h2>
+            <div class="number" id="projects">0</div>
+            <div class="label">Created</div>
+          </div>
+
+          <div class="card">
+            <h2>Credits</h2>
+            <div class="number">100</div>
+            <div class="label">Prototype credits</div>
+          </div>
+
+          <div class="card">
+            <h2>Plan</h2>
+            <div class="number">Free</div>
+            <div class="label">Upgrade anytime</div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    let projects = 0;
+
+    function newProject() {
+      projects++;
+      document.getElementById("projects").textContent = projects;
+
+      alert("New OLAS project created!");
+    }
+  </script>
+
+</body>
+  </html>
