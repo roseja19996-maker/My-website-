@@ -6,245 +6,262 @@
 <title>OLAS Creator</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-:root{
-  --bg:#050507;
-  --panel:#0d0d12;
-  --panel2:#111118;
-  --border:#24242d;
-  --text:#ffffff;
-  --muted:#9b9ba6;
-  --accent:#8b5cf6;
-  --green:#22c55e;
+:root {
+  --bg: #050507;
+  --panel: #0d0d12;
+  --panel2: #111118;
+  --border: #28242d;
+  --text: #ffffff;
+  --muted: #a9a9b6;
+  --accent: #8b5cf6;
 }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
 }
 
-header{
-  padding:18px 24px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  background:rgba(5,5,7,.95);
-  backdrop-filter:blur(12px);
-  z-index:10;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(5,5,7,.95);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logo{
-  font-size:24px;
-  font-weight:800;
+.logo {
+  font-size: 28px;
+  font-weight: 800;
 }
 
-.logo span{
-  color:var(--accent);
+.logo span {
+  color: var(--accent);
 }
 
-nav{
-  display:flex;
-  gap:10px;
+nav {
+  display: flex;
+  gap: 10px;
 }
 
-nav button{
-  background:transparent;
-  color:white;
-  border:1px solid var(--border);
-  padding:10px 16px;
-  border-radius:10px;
-  cursor:pointer;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
 }
 
-nav button:hover{
-  border-color:var(--accent);
+.hero {
+  text-align: center;
+  padding: 70px 20px 45px;
 }
 
-.container{
-  width:min(1100px,92%);
-  margin:0 auto;
-  padding:55px 0;
+.badge {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #51367d;
+  border-radius: 30px;
+  color: #c9aaff;
+  background: #160e22;
+  margin-bottom: 25px;
 }
 
-.hero{
-  text-align:center;
-  padding:45px 15px;
+.hero h1 {
+  font-size: clamp(42px, 9vw, 78px);
+  line-height: 1;
+  margin-bottom: 25px;
 }
 
-.badge{
-  display:inline-block;
-  background:#17121f;
-  border:1px solid #35234d;
-  color:#c4a5ff;
-  padding:8px 14px;
-  border-radius:30px;
-  margin-bottom:20px;
-  font-size:14px;
+.hero h1 span {
+  color: var(--accent);
 }
 
-.hero h1{
-  font-size:clamp(42px,8vw,78px);
-  line-height:1;
-  margin-bottom:20px;
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.7;
 }
 
-.hero h1 span{
-  color:var(--accent);
+.container {
+  width: min(1200px, 92%);
+  margin: auto;
 }
 
-.hero p{
-  color:var(--muted);
-  max-width:650px;
-  margin:auto;
-  font-size:18px;
-  line-height:1.6;
+.workspace {
+  margin: 30px 0 70px;
 }
 
-.buttons{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.workspace h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
 }
 
-.btn{
-  border:none;
-  padding:14px 22px;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer;
+.workspace > p {
+  color: var(--muted);
+  margin-bottom: 25px;
+  font-size: 17px;
 }
 
-.primary{
-  background:var(--accent);
-  color:white;
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.secondary{
-  background:var(--panel2);
-  color:white;
-  border:1px solid var(--border);
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-.dashboard{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:25px;
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 }
 
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:25px;
+textarea {
+  width: 100%;
+  height: 430px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  background: #08080c;
+  color: #e8e8ef;
+  padding: 20px;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
-.card h3{
-  margin-bottom:10px;
+.preview {
+  width: 100%;
+  height: 430px;
+  border: none;
+  background: white;
 }
 
-.card p{
-  color:var(--muted);
-  line-height:1.5;
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.icon{
-  font-size:32px;
-  margin-bottom:15px;
+button {
+  border: none;
+  cursor: pointer;
+  padding: 15px 22px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
 }
 
-.section{
-  margin-top:70px;
+.primary {
+  background: var(--accent);
 }
 
-.section-title{
-  font-size:32px;
-  margin-bottom:10px;
+.secondary {
+  background: #15151c;
+  border: 1px solid var(--border);
 }
 
-.section-subtitle{
-  color:var(--muted);
-  margin-bottom:25px;
+.danger {
+  background: #211116;
+  border: 1px solid #54242d;
 }
 
-.creator{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
+.status {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  display: none;
+  background: #062116;
+  color: #63e6a3;
+  border: 1px solid #145b3a;
 }
 
-textarea{
-  width:100%;
-  min-height:260px;
-  resize:vertical;
-  background:#08080c;
-  color:white;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px;
-  font-family:monospace;
-  outline:none;
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 70px;
 }
 
-textarea:focus{
-  border-color:var(--accent);
+.feature {
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
 }
 
-.preview{
-  min-height:260px;
-  background:white;
-  color:#111;
-  border-radius:14px;
-  padding:25px;
-  overflow:auto;
+.feature .icon {
+  font-size: 32px;
+  margin-bottom: 15px;
 }
 
-.status{
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:#0b1c12;
-  color:#4ade80;
-  display:none;
+.feature h3 {
+  margin-bottom: 10px;
 }
 
-footer{
-  border-top:1px solid var(--border);
-  margin-top:80px;
-  padding:30px 20px;
-  text-align:center;
-  color:var(--muted);
+.feature p {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
-@media(max-width:750px){
-  .dashboard,
-  .creator{
-    grid-template-columns:1fr;
+footer {
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding: 30px 20px;
+}
+
+@media (max-width: 800px) {
+  header {
+    padding: 15px 20px;
   }
 
-  header{
-    padding:15px;
+  .logo {
+    font-size: 24px;
   }
 
-  nav button{
-    padding:8px 10px;
+  nav a {
+    padding: 10px 13px;
+    font-size: 14px;
   }
 
-  .container{
-    padding-top:30px;
+  .hero {
+    padding-top: 50px;
+  }
+
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace h2 {
+    font-size: 32px;
   }
 }
 </style>
@@ -256,122 +273,144 @@ footer{
   <div class="logo">OLAS <span>Creator</span></div>
 
   <nav>
-    <button onclick="showHome()">Home</button>
-    <button onclick="showCreator()">Creator</button>
+    <a href="#home">Home</a>
+    <a href="#creator">Creator</a>
   </nav>
 </header>
-
-<main class="container">
 
 <section class="hero" id="home">
   <div class="badge">✨ Welcome to OLAS Creator</div>
 
-  <h1>Create. <span>Build.</span> Launch.</h1>
+  <h1>
+    Create. <span>Build.</span><br>
+    Launch.
+  </h1>
 
   <p>
-    A simple creative workspace for building your ideas,
-    experimenting with websites and turning concepts into reality.
+    A simple creative workspace for building websites,
+    experimenting with HTML and turning your ideas into reality.
   </p>
-
-  <div class="buttons">
-    <button class="btn primary" onclick="showCreator()">
-      Start Creating
-    </button>
-
-    <button class="btn secondary" onclick="learnMore()">
-      Learn More
-    </button>
-  </div>
 </section>
 
-<section class="dashboard">
+<main class="container">
 
-  <div class="card">
-    <div class="icon">🏠</div>
-    <h3>Workspace</h3>
-    <p>Your creative space is ready for your next project.</p>
+<section class="workspace" id="creator">
+
+  <h2>Creator Workspace</h2>
+
+  <p>
+    Write HTML on the left and see your website come alive on the right.
+  </p>
+
+  <div class="editor-grid">
+
+    <div class="card">
+      <div class="card-header">
+        <span>💻 HTML Editor</span>
+        <span>OLAS</span>
+      </div>
+
+      <textarea id="code"><!DOCTYPE html>
+<html>
+<head>
+  <title>My OLAS Website</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 50px;
+      background: #111;
+      color: white;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #8b5cf6;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Welcome to my website 🚀</h1>
+
+  <p>Created with OLAS Creator.</p>
+
+  <button onclick="alert('OLAS Creator is working!')">
+    Test Button
+  </button>
+
+</body>
+</html></textarea>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span>👀 Live Preview</span>
+        <span>Preview</span>
+      </div>
+
+      <iframe
+        id="preview"
+        class="preview"
+        title="Website Preview">
+      </iframe>
+    </div>
+
   </div>
 
-  <div class="card">
+  <div class="controls">
+
+    <button class="primary" onclick="runPreview()">
+      ▶ Run Preview
+    </button>
+
+    <button class="secondary" onclick="copyCode()">
+      📋 Copy Code
+    </button>
+
+    <button class="secondary" onclick="downloadCode()">
+      💾 Download
+    </button>
+
+    <button class="danger" onclick="clearCode()">
+      🗑️ Clear
+    </button>
+
+  </div>
+
+  <div id="status" class="status"></div>
+
+</section>
+
+<section class="features">
+
+  <div class="feature">
+    <div class="icon">⚡</div>
+    <h3>Live Preview</h3>
+    <p>
+      Write your HTML and instantly see what your website looks like.
+    </p>
+  </div>
+
+  <div class="feature">
     <div class="icon">🎨</div>
-    <h3>Design</h3>
-    <p>Create beautiful interfaces and experiment with ideas.</p>
+    <h3>Create Anything</h3>
+    <p>
+      Build landing pages, portfolios, experiments and more.
+    </p>
   </div>
 
-  <div class="card">
+  <div class="feature">
     <div class="icon">🚀</div>
-    <h3>Launch</h3>
-    <p>Turn your project into a live website when you're ready.</p>
-  </div>
-
-</section>
-
-<section class="section" id="creator">
-
-  <h2 class="section-title">Creator Workspace</h2>
-
-  <p class="section-subtitle">
-    Write HTML on the left and preview your creation on the right.
-  </p>
-
-  <div class="creator">
-
-    <div>
-      <textarea id="code" placeholder="Write your HTML here..."><h1>Hello from OLAS Creator!</h1>
-<p>Start building something amazing.</p></textarea>
-
-      <div class="buttons" style="justify-content:flex-start">
-        <button class="btn primary" onclick="runCode()">
-          ▶ Run Preview
-        </button>
-
-        <button class="btn secondary" onclick="clearCode()">
-          Clear
-        </button>
-      </div>
-
-      <div class="status" id="status">
-        ✓ Preview updated successfully
-      </div>
-    </div>
-
-    <div class="preview" id="preview">
-      <h1>Hello from OLAS Creator!</h1>
-      <p>Start building something amazing.</p>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section">
-
-  <h2 class="section-title">Why OLAS Creator?</h2>
-
-  <p class="section-subtitle">
-    Everything you need to start experimenting with your ideas.
-  </p>
-
-  <div class="dashboard">
-
-    <div class="card">
-      <div class="icon">⚡</div>
-      <h3>Fast</h3>
-      <p>Build and preview your ideas quickly without unnecessary complexity.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔒</div>
-      <h3>Simple</h3>
-      <p>A clean workspace designed to keep your creative process focused.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🌍</div>
-      <h3>Online</h3>
-      <p>Your project can be accessed from anywhere once deployed.</p>
-    </div>
-
+    <h3>Launch Your Ideas</h3>
+    <p>
+      Turn your ideas into real websites and share them with others.
+    </p>
   </div>
 
 </section>
@@ -379,48 +418,97 @@ footer{
 </main>
 
 <footer>
-  © 2026 OLAS Creator · Built with HTML, CSS & JavaScript
+  © 2026 OLAS Creator — Built for creators.
 </footer>
 
 <script>
-function showCreator(){
-  document.getElementById("creator").scrollIntoView({
-    behavior:"smooth"
-  });
+
+const editor = document.getElementById("code");
+const preview = document.getElementById("preview");
+const statusBox = document.getElementById("status");
+
+function runPreview() {
+
+  const code = editor.value;
+
+  preview.srcdoc = code;
+
+  showStatus("✓ Preview updated successfully");
+
 }
 
-function showHome(){
-  document.getElementById("home").scrollIntoView({
-    behavior:"smooth"
-  });
+function showStatus(message) {
+
+  statusBox.textContent = message;
+  statusBox.style.display = "block";
+
+  setTimeout(() => {
+    statusBox.style.display = "none";
+  }, 2500);
+
 }
 
-function learnMore(){
-  document.getElementById("creator").scrollIntoView({
-    behavior:"smooth"
-  });
+function clearCode() {
+
+  if (confirm("Clear all your code?")) {
+
+    editor.value = "";
+
+    preview.srcdoc = "";
+
+    showStatus("✓ Editor cleared");
+
+  }
+
 }
 
-function runCode(){
-  const code=document.getElementById("code").value;
-  const preview=document.getElementById("preview");
+async function copyCode() {
 
-  preview.innerHTML=code;
+  try {
 
-  const status=document.getElementById("status");
-  status.style.display="block";
+    await navigator.clipboard.writeText(editor.value);
 
-  setTimeout(function(){
-    status.style.display="none";
-  },2500);
+    showStatus("✓ Code copied to clipboard");
+
+  } catch (error) {
+
+    alert("Copy failed. Please select and copy the code manually.");
+
+  }
+
 }
 
-function clearCode(){
-  document.getElementById("code").value="";
-  document.getElementById("preview").innerHTML=
-    "<h2>Your preview is empty</h2><p>Write some HTML to begin.</p>";
+function downloadCode() {
+
+  const code = editor.value;
+
+  const blob = new Blob(
+    [code],
+    { type: "text/html" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "olas-website.html";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  showStatus("✓ Website downloaded");
+
 }
+
+runPreview();
+
 </script>
 
 </body>
-      </html>
+  </html>
