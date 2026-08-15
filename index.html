@@ -1,524 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OLAS Creator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLAS Creator Studio</title>
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg: #050507;
-  --panel: #0d0d12;
-  --panel2: #111118;
-  --border: #28242d;
-  --text: #ffffff;
-  --muted: #a9a9b6;
-  --accent: #8b5cf6;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(5,5,7,.95);
-  border-bottom: 1px solid var(--border);
-  padding: 18px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: 800;
-}
-
-.logo span {
-  color: var(--accent);
-}
-
-nav {
-  display: flex;
-  gap: 10px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 12px 18px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-}
-
-.hero {
-  text-align: center;
-  padding: 70px 20px 45px;
-}
-
-.badge {
-  display: inline-block;
-  padding: 10px 18px;
-  border: 1px solid #51367d;
-  border-radius: 30px;
-  color: #c9aaff;
-  background: #160e22;
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-size: clamp(42px, 9vw, 78px);
-  line-height: 1;
-  margin-bottom: 25px;
-}
-
-.hero h1 span {
-  color: var(--accent);
-}
-
-.hero p {
-  max-width: 700px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 20px;
-  line-height: 1.7;
-}
-
-.container {
-  width: min(1200px, 92%);
-  margin: auto;
-}
-
-.workspace {
-  margin: 30px 0 70px;
-}
-
-.workspace h2 {
-  font-size: 38px;
-  margin-bottom: 10px;
-}
-
-.workspace > p {
-  color: var(--muted);
-  margin-bottom: 25px;
-  font-size: 17px;
-}
-
-
-.editor-grid {
-  grid-template-columns: 1fr;
-}
-
-.editor-grid .card {
-  width: 100%;
-}
-
-.preview {
-  display: block;
-  width: 100%;
-  min-height: 430px;
-  background: white;
-}
-
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.card-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border);
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-}
-
-textarea {
-  width: 100%;
-  height: 430px;
-  resize: vertical;
-  border: none;
-  outline: none;
-  background: #08080c;
-  color: #e8e8ef;
-  padding: 20px;
-  font-family: monospace;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.preview {
-  width: 100%;
-  height: 430px;
-  border: none;
-  background: white;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-button {
-  border: none;
-  cursor: pointer;
-  padding: 15px 22px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-}
-
-.primary {
-  background: var(--accent);
-}
-
-.secondary {
-  background: #15151c;
-  border: 1px solid var(--border);
-}
-
-.danger {
-  background: #211116;
-  border: 1px solid #54242d;
-}
-
-.status {
-  margin-top: 18px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  display: none;
-  background: #062116;
-  color: #63e6a3;
-  border: 1px solid #145b3a;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 70px;
-}
-
-.feature {
-  padding: 28px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-}
-
-.feature .icon {
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-.feature h3 {
-  margin-bottom: 10px;
-}
-
-.feature p {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  padding: 30px 20px;
-}
-
-@media (max-width: 800px) {
-  header {
-    padding: 15px 20px;
-  }
-
-  .logo {
-    font-size: 24px;
-  }
-
-  nav a {
-    padding: 10px 13px;
-    font-size: 14px;
-  }
-
-  .hero {
-    padding-top: 50px;
-  }
-
-  .editor-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .features {
-    grid-template-columns: 1fr;
-  }
-
-  .workspace h2 {
-    font-size: 32px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="logo">OLAS <span>Creator</span></div>
-
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#creator">Creator</a>
-  </nav>
-</header>
-
-<section class="hero" id="home">
-  <div class="badge">✨ Welcome to OLAS Creator</div>
-
-  <h1>
-    Create. <span>Build.</span><br>
-    Launch.
-  </h1>
-
-  <p>
-    A simple creative workspace for building websites,
-    experimenting with HTML and turning your ideas into reality.
-  </p>
-</section>
-
-<main class="container">
-
-<section class="workspace" id="creator">
-
-  <h2>Creator Workspace</h2>
-
-  <p>
-    Write HTML on the left and see your website come alive on the right.
-  </p>
-
-  <div class="editor-grid">
-
-    <div class="card">
-      <div class="card-header">
-        <span>💻 HTML Editor</span>
-        <span>OLAS</span>
-      </div>
-
-      <textarea id="code"><!DOCTYPE html>
-<html>
-<head>
-  <title>My OLAS Website</title>
   <style>
     body {
-      font-family: Arial;
-      text-align: center;
-      padding: 50px;
-      background: #111;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
       color: white;
     }
 
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #8b5cf6;
-      color: white;
+    header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #292929;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      color: #aaa;
+      margin-top: 8px;
+    }
+
+    .studio {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .upload-box {
+      border: 2px dashed #555;
+      border-radius: 16px;
+      padding: 45px 20px;
+      text-align: center;
       cursor: pointer;
+      margin-bottom: 25px;
+    }
+
+    .upload-box:hover {
+      border-color: white;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #preview {
+      display: none;
+      max-width: 100%;
+      max-height: 400px;
+      margin: 20px auto;
+      border-radius: 12px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      box-sizing: border-box;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #444;
+      background: #151515;
+      color: white;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: white;
+      color: black;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    #status {
+      text-align: center;
+      color: #aaa;
+      margin-top: 18px;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Welcome to my website 🚀</h1>
+  <header>
+    <h1>OLAS Creator</h1>
+    <p>Studio</p>
+  </header>
 
-  <p>Created with OLAS Creator.</p>
+  <main class="studio">
 
-  <button onclick="alert('OLAS Creator is working!')">
-    Test Button
-  </button>
+    <label class="upload-box" for="imageInput">
+      <h2>Upload an image</h2>
+      <p>Tap here to choose a picture</p>
+    </label>
 
-</body>
-</html></textarea>
-    </div>
+    <input id="imageInput" type="file" accept="image/*">
 
-    <div class="card">
-      <div class="card-header">
-        <span>👀 Live Preview</span>
-        <span>Preview</span>
-      </div>
+    <img id="preview" alt="Image preview">
 
-      <iframe
-        id="preview"
-        class="preview"
-        title="Website Preview">
-      </iframe>
-    </div>
+    <textarea
+      id="prompt"
+      placeholder="Describe what you want OLAS to change...">
+    </textarea>
 
-  </div>
+    <button onclick="editImage()">Edit Image</button>
 
-  <div class="controls">
+    <p id="status"></p>
 
-    <button class="primary" onclick="runPreview()">
-      ▶ Run Preview
-    </button>
+  </main>
 
-    <button class="secondary" onclick="copyCode()">
-      📋 Copy Code
-    </button>
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const status = document.getElementById("status");
 
-    <button class="secondary" onclick="downloadCode()">
-      💾 Download
-    </button>
+    imageInput.addEventListener("change", function () {
+      const file = this.files[0];
 
-    <button class="danger" onclick="clearCode()">
-      🗑️ Clear
-    </button>
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+        status.textContent = "Image loaded successfully.";
+      }
+    });
 
-  </div>
+    function editImage() {
+      const prompt = document.getElementById("prompt").value.trim();
 
-  <div id="status" class="status"></div>
+      if (!imageInput.files[0]) {
+        status.textContent = "Please upload an image first.";
+        return;
+      }
 
-</section>
+      if (!prompt) {
+        status.textContent = "Please describe the edit you want.";
+        return;
+      }
 
-<section class="features">
-
-  <div class="feature">
-    <div class="icon">⚡</div>
-    <h3>Live Preview</h3>
-    <p>
-      Write your HTML and instantly see what your website looks like.
-    </p>
-  </div>
-
-  <div class="feature">
-    <div class="icon">🎨</div>
-    <h3>Create Anything</h3>
-    <p>
-      Build landing pages, portfolios, experiments and more.
-    </p>
-  </div>
-
-  <div class="feature">
-    <div class="icon">🚀</div>
-    <h3>Launch Your Ideas</h3>
-    <p>
-      Turn your ideas into real websites and share them with others.
-    </p>
-  </div>
-
-</section>
-
-</main>
-
-<footer>
-  © 2026 OLAS Creator — Built for creators.
-</footer>
-
-<script>
-
-const editor = document.getElementById("code");
-const preview = document.getElementById("preview");
-const statusBox = document.getElementById("status");
-
-function runPreview() {
-
-  const code = editor.value;
-
-  preview.srcdoc = code;
-
-  showStatus("✓ Preview updated successfully");
-
-}
-
-function showStatus(message) {
-
-  statusBox.textContent = message;
-  statusBox.style.display = "block";
-
-  setTimeout(() => {
-    statusBox.style.display = "none";
-  }, 2500);
-
-}
-
-function clearCode() {
-
-  if (confirm("Clear all your code?")) {
-
-    editor.value = "";
-
-    preview.srcdoc = "";
-
-    showStatus("✓ Editor cleared");
-
-  }
-
-}
-
-async function copyCode() {
-
-  try {
-
-    await navigator.clipboard.writeText(editor.value);
-
-    showStatus("✓ Code copied to clipboard");
-
-  } catch (error) {
-
-    alert("Copy failed. Please select and copy the code manually.");
-
-  }
-
-}
-
-function downloadCode() {
-
-  const code = editor.value;
-
-  const blob = new Blob(
-    [code],
-    { type: "text/html" }
-  );
-
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = "olas-website.html";
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-
-  URL.revokeObjectURL(url);
-
-  showStatus("✓ Website downloaded");
-
-}
-
-runPreview();
-
-</script>
+      status.textContent =
+        "OLAS received your image and editing instructions. AI editing will be connected next.";
+    }
+  </script>
 
 </body>
-  </html>
+</html>
